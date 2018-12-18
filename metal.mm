@@ -3,8 +3,7 @@
 #import "PIDefines.h"
 #import "PIFilter.h"
 
-int16 StartProc(FilterRecord *filterRecord)
-{
+int16 StartProc(FilterRecord *filterRecord) {
     
     int16 width  = filterRecord->filterRect.right -filterRecord->filterRect.left;
     int16 height = filterRecord->filterRect.bottom-filterRecord->filterRect.top ;
@@ -44,7 +43,7 @@ int16 StartProc(FilterRecord *filterRecord)
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if([fileManager fileExistsAtPath:path]) {
-                
+        
         id<MTLDevice> device = MTLCreateSystemDefaultDevice();
         __block id<MTLLibrary> library;
         
@@ -63,7 +62,7 @@ int16 StartProc(FilterRecord *filterRecord)
         });
 
         dispatch_semaphore_wait(semaphore,DISPATCH_TIME_FOREVER);
-
+        
         id<MTLFunction> function = [library newFunctionWithName:@"processimage"];
         
         id<MTLComputePipelineState> pipelineState = [device newComputePipelineStateWithFunction:function error:nil];
@@ -87,7 +86,7 @@ int16 StartProc(FilterRecord *filterRecord)
         [encoder setTexture:texture[1] atIndex:1];
         
         MTLSize threadGroupSize = MTLSizeMake(16,8,1);
-        MTLSize threadGroups = MTLSizeMake(texture[1].width/threadGroupSize.width,texture[1].height/threadGroupSize.height,1);
+        MTLSize threadGroups = MTLSizeMake(std::ceil((float)(texture[1].width/threadGroupSize.width)),std::ceil((float)(texture[1].height/threadGroupSize.height)),1);
         
         [encoder dispatchThreadgroups:threadGroups threadsPerThreadgroup:threadGroupSize];
         [encoder endEncoding];
