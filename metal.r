@@ -2,14 +2,14 @@
 #include "PIUtilities.r"
 
 #define vendorName           "mizt"
-#define plugInName           "metal"
+#define plugInName           "Metal"
 #define plugInSuiteID        'sdk1'
 #define plugInClassID        plugInSuiteID
 #define plugInEventID        plugInClassID
 #define plugInUniqueID       "9bfb4a70-027f-11e9-b568-0800200c9a66"
 
 
-resource 'PiPL' ( 16000, "Metal", purgeable )
+resource 'PiPL' ( 16000, plugInName, purgeable )
 {
     {
         Kind { Filter },
