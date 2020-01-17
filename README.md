@@ -4,24 +4,25 @@
 
 ### Usage
 	
-	$ cp -R ./bin/metal.plugin "/Applications/Adobe Photoshop CC 2018/Plug-ins" 
-   	$ open "/Applications/Adobe Photoshop CC 2018/Adobe Photoshop CC 2018.app"
+	$ cp -R ./bin/metal.plugin "/Applications/Adobe Photoshop 2020/Plug-ins" 
+   	$ open "/Applications/Adobe Photoshop 2020/Adobe Photoshop 2020.app"
 	
-`Filter` > `mizt` > `metal`
-
+`Filter` > `mizt` > `Metal`
 
 ### Edit
 
-	$ cd "/Applications/Adobe Photoshop CC 2018/Plug-ins/metal.plugin/Contents/Resources"
+	$ cd "/Applications/Adobe Photoshop 2020/Plug-ins/Metal.plugin/Contents/Resources"
 	$ vim ./default.metal
 
 ### Build
+
+MTL\_LANGUAGE\_REVISION must be Metal2.1.
 
 	$ xcrun -sdk macosx metal -c default.metal -o default.air; xcrun -sdk macosx metallib default.air -o default.metallib
 
 ### Run
 
-`Filter` > `mizt` > `metal`
+`Filter` > `mizt` > `Metal`
 
 ### Reference
 

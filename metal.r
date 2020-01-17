@@ -9,7 +9,7 @@
 #define plugInUniqueID       "9bfb4a70-027f-11e9-b568-0800200c9a66"
 
 
-resource 'PiPL' ( 16000, "metal", purgeable )
+resource 'PiPL' ( 16000, "Metal", purgeable )
 {
     {
         Kind { Filter },
